@@ -1,0 +1,125 @@
+body{
+    background-image: url(./images/ocean-3605547_1920.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+ 
+
+
+
+
+/* =============================== */
+.search-form{
+display: flex;
+justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+gap: 40px;
+
+}
+button{
+    cursor: pointer;
+  border-radius: 4px;
+  border-color: wheat;
+  color: #fff;
+  background-color: transparent;
+  padding: 10px 20px;
+}
+button:hover,
+button:focus{
+  color: #014092;
+  background-color: wheat;
+}
+input{
+    border-radius: 4px;
+  border-color: wheat;
+  color: #fff;
+  background-color: transparent;
+  padding: 10px 20px;
+  outline: none;
+}
+.load-more{
+    display: block;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  border-color: wheat;
+  color: #fff;
+  background-color: transparent;
+}
+
+.load-more:hover,
+.load-more:focus{
+  color: #014092;
+  background-color: wheat;
+}
+.gallery{
+   
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px; 
+}
+img{
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+}
+.js-gallery{
+    text-decoration: none;
+}
+.photo-card{
+    /* border: 1px solid grey; */
+    border-radius: 10px;
+    border-left: 1px solid rgb(222, 222, 222);
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
+  -webkit-box-shadow: 7px 9px 7px -4px rgba(0,0,0,0.7);
+  -moz-box-shadow: 7px 9px 7px -4px rgba(0,0,0,0.7);
+  box-shadow: 7px 9px 7px -4px rgba(0,0,0,0.7);
+  
+}
+.info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+   gap: 10px;
+   color: wheat;
+   font-weight: 500;
+   font-size: 15px;
+   line-height: 1;
+   text-align: center;
+   font-weight: 500;
+   line-height: 1.75rem;
+}
+.info-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ flex-direction: column;
+
+    /* opacity: 0;
+    position:absolute;
+  top:0;
+  left:0;
+  transform:translate(-50%, 0);
+  transition: 0.5s; */
+  /* width:98%; */
+  /* font-size:10px; */
+  /* background-color:rgba(0, 0, 0, 0.5);
+  border-top:5px solid green;
+  padding:10px 5px; */
+  /* color:#fff; */
+}
+/* .js-gallery:hover .info-item{
+  opacity: 1;
+} */
+
+/* @import compass */
+
