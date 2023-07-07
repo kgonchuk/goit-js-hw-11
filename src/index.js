@@ -13,37 +13,37 @@ export const refs = {
     submitBtn : document.querySelector('button'),
     galleryEl : document.querySelector('.gallery'),
     loader : document.querySelector('.load-more'),
-    inputEl : document.querySelector('input')
+    inputEl : document.querySelector('input'),
+    scrollBtn : document.querySelector('.myBtn')
+
 }
 
 refs.searchForm.addEventListener('submit', onSearchFormClick);
 refs.loader.addEventListener('click', onLoader );
-
+refs.loader.style.display = 'none'
 
 
 let page = 1;
 let perPage = 40;
+let name;
 
 async function onSearchFormClick(evt){
 evt.preventDefault();
-
-let name = refs.searchForm.elements.searchQuery.value.trim();
-
+name = refs.searchForm.elements.searchQuery.value.trim();
 cleanForm()
 page = 1;
 if(name === ''){
-    refs.loader.style.display = 'none'
+    // refs.loader.style.display = 'none'
     return Notify.failure(`Sorry, there are no images matching your search query. Please try again.`)
-   
 }
 try{
     const galleryImage = await fetchGalleryImg(name, page);
     let totalPages = galleryImage.data.totalHits;
     if(galleryImage.data.hits.length === 0){
-        cleanForm()
-        Notify.failure(`sorry, there are no images`)
+        refs.inputEl.value = '';
+        Notify.failure(`Sorry, there are no images matching your search query. Please try again.`)
     }else if(totalPages >= 1 && totalPages < 40){
-        refs.loader.style.display = 'none'
+        // refs.loader.style.display = 'none'
         Notify.success(`Hooray! We found ${totalPages} image.`);
     } else if(totalPages > 40){
         refs.loader.style.display = 'block'
@@ -59,27 +59,18 @@ catch(error){
 }
 }
 
-
-
-
-
 async function onLoader(){
    page +=1 ;
-   let name = refs.searchForm.elements.searchQuery.value.trim();
-
    try{
     const galleryItems = await fetchGalleryImg(name, page);
     let showPage =galleryItems.data.totalHits/ perPage;
     if(showPage < page){
-        refs.loader.style.display = 'none'
         Notify.failure(
             "We're sorry, but you've reached the end of search results."
           );
-          
-    
     }
 renderGallery(galleryItems.data.hits)
-
+simpleLightBox.refresh()
 
    }
    catch(error){
@@ -96,3 +87,34 @@ function cleanForm(){
 }
 
 
+const btnUp = {
+    el: document.querySelector('.btn-up'),
+    show() {
+      // удалим у кнопки класс btn-up_hide
+      this.el.classList.remove('btn-up_hide');
+    },
+    hide() {
+      // добавим к кнопке класс btn-up_hide
+      this.el.classList.add('btn-up_hide');
+    },
+    addEventListener() {
+      // при прокрутке содержимого страницы
+      window.addEventListener('scroll', () => {
+        // определяем величину прокрутки
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        // если страница прокручена больше чем на 400px, то делаем кнопку видимой, иначе скрываем
+        scrollY > 400 ? this.show() : this.hide();
+      });
+      // при нажатии на кнопку .btn-up
+      document.querySelector('.btn-up').onclick = () => {
+        // переместим в начало страницы
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }
+  
+  btnUp.addEventListener();
